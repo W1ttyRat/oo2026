@@ -27,6 +27,12 @@ public class ProductController {
         return productRepository.findAll();
     }
 
+    @GetMapping("products/{id}")
+    public Product getProduct(@PathVariable Long id){
+        return productRepository.findById(id).orElseThrow();
+    }
+
+
     @DeleteMapping("products/{id}")
     public List<Product> deleteProduct(@PathVariable Long id){
         productRepository.deleteById(id); // kustutan
@@ -35,6 +41,22 @@ public class ProductController {
 
     @PostMapping("products")
     public List<Product> addProduct(@RequestBody Product product){
+        if (product.getId()!=null){
+            throw new RuntimeException("cannot add with id");
+        }
+        productRepository.save(product); //siin salvestab
+        return productRepository.findAll(); // siin on uuenenud seis
+    }
+
+    @PutMapping("products")
+    public List<Product> editProduct(@RequestBody Product product){
+        // File -> settings -> plugins -> lombok -> install
+        if (product.getId()==null){
+            throw new RuntimeException("cannot edit without id");
+        }
+        if (!productRepository.existsById(product.getId())){
+            throw new RuntimeException("product Id does not exist");
+        }
         productRepository.save(product); //siin salvestab
         return productRepository.findAll(); // siin on uuenenud seis
     }
