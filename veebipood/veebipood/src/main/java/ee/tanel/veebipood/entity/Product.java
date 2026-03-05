@@ -21,6 +21,15 @@ public class Product {
     private double price;
     private boolean active;
     private int stock;
+
+    // @ManyToMany -> private list<Ingredients> ingredients
+    // @OneToMany -> private list<Ingredients> ingredients
+    // @ManyToOne -> tooted jagavad seda kategooriat
+    // @OneToOne -> tooted ei jaga seda kategooriat
+
+    @ManyToOne
+    private Category category; // automaatselt võõrvõtmega (@id väljaga) siia tabelisse
+
     // Panen Andmebaasi, aga ei määra seda väärtust
     // double -> 0
     // boolean - false

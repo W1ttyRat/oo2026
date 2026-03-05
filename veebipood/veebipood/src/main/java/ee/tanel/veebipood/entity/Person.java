@@ -28,5 +28,12 @@ public class Person { // "User" on hõivatud PostgreSQL tasandil
     @Column(unique = true)
     private String personalCode;
 
+    // cascadetype -> cascadetype.remove  kui kustutatakse Person, siis ka Address
+    // casecadetype.persist  kui lisatakse person ja temaga antakse kaasa address mida pole DB-s, siis ta lisatakse andmebaasi kui eraldi kirje address tabelisse
+    // cascadetype.merge  kui muudetakse personit ja personi küljes olevat addressi siis muutub nii personi sisu kui ka addressi sisu
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Address address;
+
 
 }

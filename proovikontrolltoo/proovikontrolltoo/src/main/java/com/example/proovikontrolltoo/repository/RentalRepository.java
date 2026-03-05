@@ -1,4 +1,7 @@
 package com.example.proovikontrolltoo.repository;
 
-public class RentalRepository {
+import com.example.proovikontrolltoo.entity.Rental;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface RentalRepository extends JpaRepository<Rental, Long> {
 }

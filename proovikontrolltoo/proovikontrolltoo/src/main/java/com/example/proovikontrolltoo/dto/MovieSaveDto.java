@@ -1,4 +1,5 @@
 package com.example.proovikontrolltoo.dto;
 
-public record MovieSaveDto() {
+public record MovieSaveDto(String title, String type) {
+
 }
