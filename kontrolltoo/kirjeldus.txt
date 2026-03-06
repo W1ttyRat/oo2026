@@ -1,0 +1,7 @@
+Sõna pikkuste uuring
+
+* Tee uus Spring rakendus. Lisa entity (vabalt valitud nimega), mis hoiab enda sees nii automaatselt genereeritud ID’d (Long) kui ka sõna (String). Tee application.properties sisse andmebaasiühendus. Tee entity nimele vastav Repository ja Controller. Repository seo Controlleriga @Autowired abil. Tee üks API otspunkt sõna lisamiseks andmebaasi ning teine API otspunkt kõikide sõnade vaatamiseks. Kontrolli töötamist Postmaniga. Lisa sõna sisestuse juures vähemalt 2 kontrolli, mis väljastavad veateate.
+
+* Loo API otspunkt, mis loeks kokku, mitu kolmetähelist sõna on andmebaasis. Loo teine API otspunkt, mis väljastab mitu sõna on andmebaasis, mille tähtede arv jagub kolmega. Loo kolmas API otspunkt, mis teatab booleaniga, kas sõna pikkus on algarv või mitte.
+
+* Salvesta kõik tähtede arvu küsimised andmebaasi - uude tabelisse (pead uue Entity ja Repository tegema). Töötamine: sul on esialgses tabelis 8 sõna. Kui oled ühe korra saanud vastuseks, et sul on kokku 2 kolmearvulist sõna (API otspunkt nr 1), siis salvestatakse nr 2 uude tabelisse. Kui käivitad täpselt sama päringu uuesti ilma esialgseid andmeid muutmata, on sul seal nüüdseks 2 kirjet, mille mõlema sisu on 2. Kui lisad mõne sõna juurde (mille pikkus on ka 3) ning seejärel küsid uuesti mitu kolmetähtelist sõna on, siis salvestatakse suurem number andmebaasi. Viimane ülesanne: lisa kõigi sõnade algusesse nii mitmes täht tähestikust, kui pikk see sõna on.

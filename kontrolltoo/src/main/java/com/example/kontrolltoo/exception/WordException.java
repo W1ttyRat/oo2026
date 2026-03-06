@@ -1,12 +1,19 @@
 package com.example.kontrolltoo.exception;
 
-public class MovieNotFoundException extends RuntimeException {
+public class WordException extends RuntimeException {
 
-    public MovieNotFoundException(Long id) {
-        super("Movie not found with id: " + id);
+    public WordException(String message) {
+        super(message);
     }
 
-    public MovieNotFoundException(String message) {
-        super(message);
+    public static void validateWord(String word) {
+        if (word == null || word.trim().isEmpty()) {
+            throw new WordException("Word cannot be empty");
+        }
+
+        // Check if word contains only numbers or symbols (no letters)
+        if (!word.matches(".*[a-zA-Z].*")) {
+            throw new WordException("Word must contain at least one letter");
+        }
     }
 }

@@ -1,44 +1,54 @@
 package com.example.kontrolltoo.controller;
 
-import com.example.kontrolltoo.dto.MovieSaveDto;
-import com.example.kontrolltoo.entity.Movie;
-import com.example.kontrolltoo.repository.MovieRepository;
-import com.example.kontrolltoo.service.MovieService;
+import com.example.kontrolltoo.entity.Word;
 
+import com.example.kontrolltoo.exception.WordException;
+import com.example.kontrolltoo.repository.WordRepository;
+import com.example.kontrolltoo.service.WordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/")
-public class MovieController {
+public class WordController {
 
     @Autowired
-    private MovieService movieService;
+    private WordService wordService;
 
-    @GetMapping("/movies")
-    public List<Movie> findAll() {
-        return movieService.findAll();
+    //1. punkt
+
+    @GetMapping("words")
+    public List<Word> findAll() {
+        return wordService.findall();
     }
 
-    @GetMapping("/movies/{id}")
-    public Movie findById(@PathVariable Long id) {
-        return movieService.findById(id);
+    @PostMapping("words")
+    public Word save(@RequestBody Word word) {
+        return wordService.save(word);
     }
 
-    @PostMapping("/movies")
-    public Movie save(@RequestBody MovieSaveDto dto) {
-        return movieService.save(dto);
+
+    // 2. punkt
+
+
+    @GetMapping("words/three")
+    public long countThreeLetter() {
+        return wordService.countThreeLetter();
     }
 
-    @PatchMapping("/movies/{id}")
-    public Movie update(@PathVariable Long id, @RequestBody MovieSaveDto dto) {
-        return movieService.update(id, dto);
+    @GetMapping("words/divisble")
+    public long countDivisibleByThree() {
+        return wordService.countDivisibleByThree();
     }
 
-    @DeleteMapping("/movies/{id}")
-    public void deleteById(@PathVariable Long id) {
-        movieService.deleteById(id);
+    @GetMapping("words/{id}/prime")
+    public boolean isPrimeLength(@PathVariable long id) {
+        return wordService.isPrimeLength(id);
     }
+
+
+
+
+
 }

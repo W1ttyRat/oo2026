@@ -15,12 +15,11 @@ import lombok.Setter;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Movie {
+public class Word {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long id;
-    private String title;
-    private String description;
+    private String word;
 }
