@@ -47,6 +47,13 @@ public class WordController {
         return wordService.isPrimeLength(id);
     }
 
+    // 3. punkt
+
+    @PutMapping("words/prefix-add")
+    public List<Word> addPrefix() {
+        return wordService.addPrefix();
+    }
+
 
 
 

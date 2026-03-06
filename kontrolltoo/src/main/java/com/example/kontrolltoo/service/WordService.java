@@ -1,11 +1,14 @@
 package com.example.kontrolltoo.service;
 
+import com.example.kontrolltoo.entity.ThreeLetterLog;
 import com.example.kontrolltoo.entity.Word;
 import com.example.kontrolltoo.exception.WordException;
+import com.example.kontrolltoo.repository.ThreeLetterLogRepository;
 import com.example.kontrolltoo.repository.WordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -13,6 +16,9 @@ public class WordService {
 
     @Autowired
     private WordRepository wordRepository;
+
+    @Autowired
+    private ThreeLetterLogRepository threeLetterLogRepository;
 
     public List<Word> findall() {
         return wordRepository.findAll();
@@ -31,6 +37,11 @@ public class WordService {
                 count++;
             }
         }
+
+        // 3. punkti osa
+        threeLetterLogRepository.save(new ThreeLetterLog(count, LocalDateTime.now())
+        );
+
         return count;
     }
 
@@ -60,5 +71,28 @@ public class WordService {
         }
         return true;
     }
+
+    // 3. punkt
+
+    public List<Word> addPrefix() {
+        List<Word> words = wordRepository.findAll();
+
+        for (Word word : words) {
+            if (word.getWord() == null || word.getWord().isBlank()) {
+                continue;
+            }
+            int len = word.getWord().length();
+            char letter = letterByLength(len);
+            word.setWord(letter + word.getWord());
+        }
+        return wordRepository.saveAll(words);
+    }
+
+    private char letterByLength(int len) {
+        // 1->A, 2->B ... -> 26->Z
+        int normalized = (len - 1) % 26;
+        return (char) ('A' + normalized);
+    }
+
 
 }
