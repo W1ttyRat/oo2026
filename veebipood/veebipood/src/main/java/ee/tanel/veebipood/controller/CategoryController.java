@@ -30,4 +30,7 @@ public class CategoryController {
         categoryRepository.save(category); //siin salvestab
         return categoryRepository.findAll(); // siin on uuenenud seis
     }
+
+    // TODO: categories/admin --> kuvatakse kõik kategooriad
+    // categories --> kuvatakse vaid kategooriad, kellel on mõni toode
 }
