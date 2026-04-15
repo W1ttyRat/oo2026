@@ -49,11 +49,15 @@ public class AthleteService {
         athleteRepository.deleteById(id);
     }
 
-    public Result addResult(ResultSaveDto resultSaveDto) {
-        Athlete athlete = findAthleteById(resultSaveDto.athleteId());
+    public Result addResult(ResultSaveDto dto) {
+        Athlete athlete = findAthleteById(dto.athleteId());
+
+        int calculatedScore = DecathlonCalculator.calculate(dto.discipline(), dto.value());
 
         Result result = new Result();
-        result.setScore(resultSaveDto.score());
+        result.setDiscipline(dto.discipline());
+        result.setValue(dto.value());
+        result.setScore(calculatedScore);
         result.setAthlete(athlete);
 
         return resultRepository.save(result);

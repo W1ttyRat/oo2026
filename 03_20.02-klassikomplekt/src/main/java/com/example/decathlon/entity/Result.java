@@ -1,5 +1,6 @@
 package com.example.decathlon.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,6 +12,7 @@ import lombok.Setter;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+//@Table(name = "results")
 public class Result {
 
     @Id
@@ -18,8 +20,11 @@ public class Result {
     private Long id;
 
     private Integer score;
+    private String discipline;
+    private Double value;
 
     @ManyToOne
     @JoinColumn(name = "athlete_id")
+    @JsonIgnore
     private Athlete athlete;
 }
