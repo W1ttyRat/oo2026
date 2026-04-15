@@ -1,6 +1,7 @@
 package com.example.decathlon.controller;
 
 import com.example.decathlon.dto.AthleteSaveDto;
+import com.example.decathlon.dto.AthleteScoreDto;
 import com.example.decathlon.dto.ResultSaveDto;
 import com.example.decathlon.entity.Athlete;
 import com.example.decathlon.entity.Result;
@@ -51,5 +52,10 @@ public class AthleteController {
     @GetMapping("/athletes/{id}/total-score")
     public Integer getTotalScore(@PathVariable Long id) {
         return athleteService.getTotalScore(id);
+    }
+
+    @GetMapping("/athletes/scores")
+    public List<AthleteScoreDto> findAllAthletesWithScores() {
+        return athleteService.findAllAthletesWithScores();
     }
 }

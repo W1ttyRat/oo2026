@@ -1,6 +1,7 @@
 package com.example.decathlon.service;
 
 import com.example.decathlon.dto.AthleteSaveDto;
+import com.example.decathlon.dto.AthleteScoreDto;
 import com.example.decathlon.dto.ResultSaveDto;
 import com.example.decathlon.entity.Athlete;
 import com.example.decathlon.entity.Result;
@@ -68,5 +69,14 @@ public class AthleteService {
         return athlete.getResults().stream()
                 .mapToInt(Result::getScore)
                 .sum();
+    }
+
+    public List<AthleteScoreDto> findAllAthletesWithScores() {
+        List<Athlete> athletes = athleteRepository.findAll();
+
+        return athletes.stream().map(athlete -> {
+            int totalScore = athlete.getResults().stream().mapToInt(Result::getScore).sum();
+            return new AthleteScoreDto(athlete.getId(), athlete.getName(), totalScore);
+        }).toList();
     }
 }

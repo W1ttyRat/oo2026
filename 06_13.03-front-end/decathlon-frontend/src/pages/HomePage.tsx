@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { Athlete } from "./assets/Athlete";
+import type { Athlete } from "../assets/Athlete.ts";
 
 function HomePage() {
     const [athletes, setAthletes] = useState<Athlete[]>([]);
@@ -12,12 +12,14 @@ function HomePage() {
 
     return (
         <div>
-            {athletes.map(athletes =>
-                <div key={athletes.id}>{athletes.name}</div>
-            )}
+            <div>
+                {athletes.map(athlete => (
+                    <div key={athlete.id}>{athlete.name}</div>
+                ))}
+            </div>
         </div>
+        
     )
-
 
 
 }
