@@ -5,7 +5,7 @@ function ResultsPage() {
     const [results, setResults] = useState<Result[]>([]);
 
     useEffect(() => {
-        fetch("http://localhost:8080/api/athletes/scores")
+        fetch("/api/athletes/scores")
         .then(res => res.json())
         .then(json => setResults(json))
     }, []);

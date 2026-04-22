@@ -1,28 +1,30 @@
 package com.example.decathlon.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Getter
 @Setter
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Athlete {
+//@Table(name = "results")
+public class Result {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
-    private String country;
+    private Integer score;
+    private String discipline;
+    private Double value;
 
-    @OneToMany(mappedBy = "athlete", cascade = CascadeType.ALL)
-    private List<Result> results = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "athlete_id")
+    @JsonIgnore
+    private Athlete athlete;
 }
