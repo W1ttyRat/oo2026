@@ -21,14 +21,16 @@ public class PersonService {
     }
 
     public void validate(Person person){
-        if (person.getId() != null) {
-            throw new RuntimeException("cannot sign up with ID");
-        }
+//        if (person.getId() != null) {
+//            throw new RuntimeException("cannot sign up with ID");
+//        }
+        // need veateated ei tohiks minna tavakliendile
+        // need veateated on front-endile
         if (person.getEmail() == null) {
-            throw new RuntimeException("cannot sign up with without email");
+            throw new RuntimeException("Email missing");
         }
         if (person.getPersonalCode() == null) {
-            throw new RuntimeException("cannot sign up with without personal code");
+            throw new RuntimeException("Personal code missing");
         }
         if (!isValid(person.getEmail())) {
             throw new RuntimeException("invalid email");

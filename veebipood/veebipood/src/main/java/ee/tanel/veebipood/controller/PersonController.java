@@ -34,7 +34,7 @@ public class PersonController {
     }
 
     @PostMapping("signup")
-    public Person signup(@RequestBody Person person){
+    public Person signup(@RequestBody Person person){ // TODO:  PersonSignupDTO (kus pole aadressi, ega ID-d)
         if (person.getId() != null) {
             throw new RuntimeException("Cannot sign up with ID");
         }
@@ -43,7 +43,7 @@ public class PersonController {
     }
 
     @PostMapping("login")
-    public Person login(@RequestBody PersonLoginRecordDto personDto){
+    public Person login(@RequestBody PersonLoginRecordDto personDto){ // TODO: PersonUpdateDTO (kus pole parooli)
         Person dbPerson = personRepository.findByEmail(personDto.email());
         if (dbPerson == null) {
             throw new RuntimeException("Invalid email");
@@ -52,5 +52,20 @@ public class PersonController {
             throw new RuntimeException("Invalid password");
         }
         return dbPerson;
+    }
+
+    @PutMapping("profile")
+    public Person updateProfile(@RequestBody Person person) {
+        // kui on DTO, siis ei pea alumist kontrolli tegema
+        if (person.getId() == null) {
+            throw new RuntimeException("Cannot update without ID");
+        }
+        personService.validate(person);
+        return personRepository.save(person);
+    }
+
+    @GetMapping("profile")
+    public Person getProfile(@RequestParam Long id) {
+        return personRepository.findById(id).orElseThrow();
     }
 }
