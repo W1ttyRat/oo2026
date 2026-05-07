@@ -1,5 +1,7 @@
 export type Result = {
     id: number;
-    name: string;
-    totalScore: number;
+    athleteName: string;
+    discipline: string;
+    value: number;
+    score: number;
 };

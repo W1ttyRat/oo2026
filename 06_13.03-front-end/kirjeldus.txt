@@ -1,3 +1,2 @@
 Kümnevõistlusele lihtne front-end. Kõik back-endis tehtud peab olema kasutusel front-endis.
 
-backend on https://github.com/W1ttyRat/oo2026/tree/main/03_20.02-klassikomplekt
